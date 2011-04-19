@@ -39,7 +39,6 @@ ERLANG_LIB_VER_stdlib = @ERLANG_LIB_VER_stdlib@
 ERLANG_LIB_VER_yaws = @ERLANG_LIB_VER_yaws@
 ERLANG_LIB_VER_crypto = @ERLANG_LIB_VER_crypto@
 ERLANG_LIB_VER_public_key = @ERLANG_LIB_VER_public_key@
-ERLANG_LIB_VER_SUBST = @ERLANG_LIB_VER_SUBST@
 
 HAS_OTP_PUB_KEY_HRL = @HAS_OTP_PUB_KEY_HRL@
 
@@ -219,7 +218,14 @@ $(ebin_dir)/%.app:	$(srcdir)/%.app-in
 $(ebin_dir)/%.rel:	$(srcdir)/%.rel-in
 	sed -e 's!%VERSION%!@PACKAGE_VERSION@!' \
 	  -e 's,[@]ERLANG_ERTS_VER[@],$(ERLANG_ERTS_VER),g' \
-	  $(ERLANG_LIB_VER_SUBST) < $< > $@
+	  -e 's,[@]ERLANG_LIB_VER_kernel[@],$(ERLANG_LIB_VER_kernel),g' \
+	  -e 's,[@]ERLANG_LIB_VER_stdlib[@],$(ERLANG_LIB_VER_stdlib),g' \
+	  -e 's,[@]ERLANG_LIB_VER_mnesia[@],$(ERLANG_LIB_VER_mnesia),g' \
+	  -e 's,[@]ERLANG_LIB_VER_asn1[@],$(ERLANG_LIB_VER_asn1),g' \
+	  -e 's,[@]ERLANG_LIB_VER_ssl[@],$(ERLANG_LIB_VER_ssl),g' \
+	  -e 's,[@]ERLANG_LIB_VER_crypto[@],$(ERLANG_LIB_VER_crypto),g' \
+	  -e 's,[@]ERLANG_LIB_VER_public_key[@],$(ERLANG_LIB_VER_public_key),g' \
+	  -e 's,[@]ERLANG_LIB_VER_yaws[@],$(ERLANG_LIB_VER_yaws),g' < $< > $@
 
 %.boot: $(ebin_dir)/%.app $(ebin_dir)/yxa.app $(ebin_dir)/%.rel
 	$(systools_make_script)

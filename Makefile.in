@@ -58,8 +58,7 @@ SUBDIRS = \
 
 RECURSIVE_TARGETS = all-recursive install-recursive clean-recursive distclean-recursive doc-recursive packages-recursive
 
-erl_FILES = \
-	version.erl
+erl_FILES = 
 
 beam_FILES = $(addprefix $(ebin_dir)/, $(erl_FILES:.erl=.beam))
 
@@ -101,13 +100,12 @@ distclean: clean distclean-recursive
 	rm -f Makefile
 	rm -f config.status
 	rm -f config.log
-	rm -f version.erl
 	rm -rf doc/
 	rm -rf $(ebin_dir)/
 
 clean: clean-recursive
 	rm -f core *.core *~
-	rm -f *.beam newversion.erl.new version.erl.in
+	rm -f *.beam 
 	rm -f *.o ktrace.out erl_crash.dump
 	rm -f $(beam_FILES)
 	rm -f $(start_FILES)
