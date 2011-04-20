@@ -89,6 +89,7 @@
 	     yxa_ctl,
 	     yxa_edoc,
 	     yxa_monitor
+	     yxa_ssl_pkix_oid
 	    ]},
   {registered, []},
   {env, []},

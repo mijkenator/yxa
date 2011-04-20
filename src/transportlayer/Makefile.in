@@ -48,7 +48,7 @@ erl_FILES = \
 	tcp_listener.erl \
 	tcp_receiver.erl \
 	transportlayer.erl \
-	yxa_ssl_pkix_oid.erl
+	mk_yxa_ssl_pkix_oid.erl
 
 imported_hrl_FILES = \
 	../include/yxa_config.hrl \
@@ -65,7 +65,8 @@ yxa_hrl_FILES = $(imported_hrl_FILES) $(hrl_FILES)
 CC = gcc
 CFLAGS = -Wall
 
-beam_FILES = $(addprefix $(ebin_dir)/, $(erl_FILES:.erl=.beam))
+beam_FILES = $(addprefix $(ebin_dir)/, $(erl_FILES:.erl=.beam)) \
+	$(ebin_dir)/yxa_ssl_pkix_oid.beam
 
 all: $(beam_FILES)
 
@@ -106,6 +107,9 @@ SUFFIXES = .c .o .hrl .beam .erl .boot .rel .rel-in .app .app-in
 .SUFFIXES: .c .o .hrl .beam .erl .boot .rel .rel-in .app .app-in
 
 $(ebin_dir)/%.beam:	$(srcdir)/%.erl
+	$(ERLC) $(L_ERLC_FLAGS) $<
+
+$(ebin_dir)/yxa_ssl_pkix_oid.beam:  yxa_ssl_pkix_oid.erl
 	$(ERLC) $(L_ERLC_FLAGS) $<
 
 yxa_ssl_pkix_oid.erl: $(ebin_dir)/mk_yxa_ssl_pkix_oid.beam
