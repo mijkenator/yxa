@@ -90,7 +90,7 @@ send_proxy_response(Socket, Response)
 %%            Socket        = #sipsocket{} | none "socket to use for sending this request"
 %%            Request       = #request{}
 %%            Dst           = #sipdst{}
-%%            ViaParameters = [string()]  "list of strings like foo=bar"y
+%%            ViaParameters = [string()]  "list of strings like foo=bar"
 %%
 %%            Reason     = timeout | string() | term()
 %%            SipSocket  = #sipsocket{} "the socket used"
