@@ -440,7 +440,7 @@ request_to_homedomain(Request, Origin, LogTag, Recursing) when is_record(Request
     end.
 
 %%--------------------------------------------------------------------
-%% @spec    (Request, Origin, LogTag) ->
+%% @spec    (Request, Origin) ->
 %%            {forward, Location} |
 %%            false
 %%

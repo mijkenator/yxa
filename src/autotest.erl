@@ -447,8 +447,9 @@ start_fake_handler(ProcName) ->
     end.
 
 %%--------------------------------------------------------------------
-%% @spec    (Enabled) -> term() "does not return."
+%% @spec    (ProcName, Enabled) -> term() "does not return."
 %%
+%%            ProcName = atom()
 %%            Enabled = bool()
 %%
 %% @doc     Main loop for a process that does nothing more than
