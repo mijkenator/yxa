@@ -182,8 +182,13 @@ regexproute() ->
 %%--------------------------------------------------------------------
 cpl_script_graph() ->
     Table = cpl_script_graph,
-    {ok, Attrs, Fun} = cpl_db:get_transform_fun(),
-    do_transform_table(Table, Fun, Attrs).
+    try cpl_db:get_transform_fun() of
+        {ok, Attrs, Fun} ->
+            do_transform_table(Table, Fun, Attrs)
+    catch
+        error:undef ->
+            ok
+    end.
 
 %%--------------------------------------------------------------------
 %% @spec    () -> void()

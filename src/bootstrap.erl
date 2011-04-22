@@ -34,6 +34,7 @@
 			eventdata
 		       ]).
 
+-define(OPTIONAL_TABLES, [cpl_script_graph]).
 
 %%--------------------------------------------------------------------
 %% @spec    () -> ok
@@ -75,11 +76,15 @@ create_schema(Node) ->
 
 init_db_module([H | T], Node) ->
     io:format("  + Creating table(s) using module '~p'~n", [H]),
-    case H:create([Node]) of
+    try H:create([Node]) of
 	{atomic, ok} ->
 	    init_db_module(T, Node);
 	{aborted, {already_exists, _Table}} ->
 	    %% not an error
+	    init_db_module(T, Node)
+	catch
+	error:undef ->
+	    io:format("    - Module '~p' unavailable~n", [H]),
 	    init_db_module(T, Node);
 	E ->
 	    io:format("~nERROR: ~p:create/1 FAILED : ~p~n~n", [H, E]),
@@ -223,9 +228,14 @@ my_wait_for_tables2([H | T], Timeout, Count) ->
     case mnesia:wait_for_tables([H], Timeout) of
 	ok ->
 	    my_wait_for_tables2(T, Timeout, Count + 1);
-	{timeout, _Bad_Tab_List} ->
-	    io:format(" timeout!~n~n"),
-	    timeout;
+	{timeout, Bad_Tab_List} ->
+	    case lists:subtract(Bad_Tab_List, ?OPTIONAL_TABLES) of
+		[] ->
+		    my_wait_for_tables2(T, Timeout, Count + 1);
+		_ ->
+		    io:format(" timeout!~n~n"),
+		    timeout
+	    end;
 	{error, Reason} ->
 	    io:format(" error ~p~n~n", [Reason]),
 	    error
