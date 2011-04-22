@@ -505,8 +505,9 @@ make_extraheaders(Status, ExtraHeaders_In) ->
     Server =
 	case yxa_config:get_env(set_useragent_and_server) of
 	    {ok, true} ->
+		{ok, Vsn} = application:get_key(yxa, vsn),
 		Value =
-		    lists:concat(["YXA/", version:get_version(),
+		    lists:concat(["YXA/", Vsn,
 				  " at ", siprequest:myhostname()]),
 		[{"Server", [Value]}];
 	    {ok, false} ->

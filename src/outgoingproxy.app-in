@@ -1,6 +1,7 @@
 %% -*- erlang -*-
 {application, outgoingproxy,
  [{description, "YXA outgoingproxy"},
+  {id, "%NAME%"},
   {vsn,"%VERSION%"},
   {modules, [
 	     outgoingproxy,

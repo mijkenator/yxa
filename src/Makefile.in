@@ -213,10 +213,11 @@ $(ebin_dir)/directory.beam: $(srcdir)/directory.erl ../config.status $(srcdir)/e
 
 $(ebin_dir)/%.app:	$(srcdir)/%.app-in
 	sed -e 's!%LOCAL_MODULE%!$(local_module)!' \
-			-e 's!%VERSION%!@PACKAGE_VERSION@!' < $< > $@
+	  -e 's!%NAME%!@PACKAGE_NAME@!' \
+	  -e 's!%VERSION%!@PACKAGE_VERSION@!' < $< > $@
 
 $(ebin_dir)/%.rel:	$(srcdir)/%.rel-in
-	sed -e 's!%VERSION%!@PACKAGE_VERSION@!' \
+	sed -e 's!%VERSION%!@PACKAGE_VERSION@!g' \
 	  -e 's,[@]ERLANG_ERTS_VER[@],$(ERLANG_ERTS_VER),g' \
 	  -e 's,[@]ERLANG_LIB_VER_kernel[@],$(ERLANG_LIB_VER_kernel),g' \
 	  -e 's,[@]ERLANG_LIB_VER_stdlib[@],$(ERLANG_LIB_VER_stdlib),g' \

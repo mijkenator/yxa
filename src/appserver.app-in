@@ -1,6 +1,7 @@
 %% -*- erlang -*-
 {application, appserver,
  [{description, "YXA appserver"},
+  {id, "%NAME%"},
   {vsn,"%VERSION%"},
   {modules, [
 	     appserver,

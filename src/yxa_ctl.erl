@@ -177,10 +177,41 @@ status() ->
 info([]) ->
     [{starttime, Starttime1}] = ets:lookup(yxa_statistics, starttime),
     Starttime = util:sec_to_date(Starttime1),
+    ModuleInfo = sipserver:module_info(),
+    {value, {compile, CompileInfo}} = lists:keysearch(compile, 1, ModuleInfo),
+    {value, {time, CompileTime}} = lists:keysearch(time, 1, CompileInfo),
+    {Year, Month, Day, Hour, Minute, Second} = CompileTime,
+    WeekDay = case calendar:day_of_the_week(Year, Month, Day) of
+        1 -> "Mon";
+        2 -> "Tue";
+        3 -> "Wed";
+        4 -> "Thu";
+        5 -> "Fri";
+        6 -> "Sat";
+        7 -> "Sun"
+    end,
+    MonthName = case Month of
+        1 -> "Jan";
+        2 -> "Feb";
+        3 -> "Mar";
+        4 -> "Apr";
+        5 -> "May";
+        6 -> "Jun";
+        7 -> "Jul";
+        8 -> "Aug";
+        9 -> "Sep";
+        10 -> "Oct";
+        11 -> "Nov";
+        12 -> "Dec"
+    end,
+    DateTime = io_lib:fwrite("~s ~2b ~s ~4b ~2.10b:~2.10.0b:~2.10.0b",
+            [WeekDay, Day, MonthName, Year, Hour, Minute, Second]),
+    {ok, Name} = application:get_key(yxa, id),
+    {ok, Vsn} = application:get_key(yxa, vsn),
     GeneralInfo =
 	[{"General information :", 2, 15,
-	  [{"Version",		version:get_version()},
-	   {"Long version",	version:get_long_version()},
+	  [{"Version",		Vsn},
+	   {"Long version",	lists:flatten(DateTime)},
 	   {"Starttime",	Starttime}
 	  ]}
 	 ],

@@ -1,6 +1,7 @@
 %% -*- erlang -*-
 {application, yxa,
  [{description, "YXA SIP stack"},
+  {id, "%NAME%"},
   {vsn,"%VERSION%"},
   {modules, [
 	     autotest,
@@ -88,7 +89,7 @@
 	     yxa_app,
 	     yxa_ctl,
 	     yxa_edoc,
-	     yxa_monitor
+	     yxa_monitor,
 	     yxa_ssl_pkix_oid
 	    ]},
   {registered, []},

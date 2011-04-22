@@ -143,7 +143,7 @@ $(ebin_dir)/%.beam:	$(srcdir)/%.erl
 	$(ERLC) $(L_ERLC_FLAGS) $<
 
 $(ebin_dir)/%.rel:	$(srcdir)/%.rel-in
-	sed -e 's!%VERSION%!@PACKAGE_VERSION@!' \
+	sed -e 's!%VERSION%!@PACKAGE_VERSION@!g' \
 	  -e 's,[@]ERLANG_ERTS_VER[@],$(ERLANG_ERTS_VER),g' \
 	  -e 's,[@]ERLANG_LIB_VER_kernel[@],$(ERLANG_LIB_VER_kernel),g' \
 	  -e 's,[@]ERLANG_LIB_VER_stdlib[@],$(ERLANG_LIB_VER_stdlib),g' \
@@ -155,7 +155,8 @@ $(ebin_dir)/%.rel:	$(srcdir)/%.rel-in
 	  -e 's,[@]ERLANG_LIB_VER_yaws[@],$(ERLANG_LIB_VER_yaws),g' < $< > $@
 
 $(ebin_dir)/%.app:	$(srcdir)/%.app-in
-	sed -e 's!%VERSION%!@PACKAGE_VERSION@!' < $< > $@
+	sed -e 's!%NAME%!@PACKAGE_NAME@!' \
+	  -e 's!%VERSION%!@PACKAGE_VERSION@!' < $< > $@
 
 %.boot: $(ebin_dir)/%.app $(ebin_dir)/yxa.app $(ebin_dir)/%.rel
 	$(systools_make_script)

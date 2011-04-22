@@ -1,6 +1,7 @@
 %% -*- erlang -*-
 {application, pstnproxy,
  [{description, "YXA pstnproxy"},
+  {id, "%NAME%"},
   {vsn,"%VERSION%"},
   {modules, [
 	     pstnproxy,

@@ -91,7 +91,8 @@ start(normal, [AppModule]) ->
 				    ])
 		     ]),
 	    {ok, Supervisor} = sipserver_sup:start_transportlayer(Supervisor),
-	    logger:log(normal, "proxy started (YXA version ~s)", [version:get_version()]),
+	    {ok, Vsn} = application:get_key(yxa, vsn),
+	    logger:log(normal, "proxy started (YXA version ~s)", [Vsn]),
 	    {ok, Supervisor};
 	Unknown ->
 	    E = lists:flatten(io_lib:format("Failed starting supervisor : ~p", [Unknown])),

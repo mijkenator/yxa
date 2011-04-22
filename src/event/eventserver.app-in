@@ -1,5 +1,6 @@
 {application, eventserver,
  [{description, "YXA eventserver"},
+  {id, "%NAME%"},
   {vsn,"%VERSION%"},
   {modules, [
     active_subscriber,

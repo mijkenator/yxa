@@ -1302,8 +1302,9 @@ get_subscribe_2xx_expires(Header, Default) ->
 get_useragent_or_server(Key) ->
     case yxa_config:get_env(set_useragent_and_server) of
 	{ok, true} ->
+	    {ok, Vsn} = application:get_key(yxa, vsn),
 	    Value =
-		lists:concat(["YXA/", version:get_version(),
+		lists:concat(["YXA/", Vsn,
 			      " at ", siprequest:myhostname()]),
 	    [{Key, [Value]}];
 	{ok, false} ->
