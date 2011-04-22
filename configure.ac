@@ -29,6 +29,7 @@ AC_ERLANG_CHECK_LIB([asn1], , [AC_MSG_ERROR([asn1 was not found!])])
 AC_ERLANG_CHECK_LIB([ssl], , [AC_MSG_ERROR([ssl was not found!])])
 AC_ERLANG_CHECK_LIB([crypto], , [AC_MSG_ERROR([crypto was not found!])])
 AC_ERLANG_CHECK_LIB([public_key], , [AC_MSG_ERROR([public_key was not found!])])
+AC_ERLANG_CHECK_LIB([sasl])
 AC_ERLANG_CHECK_LIB([yaws])
 
 AC_CHECK_FILE([${ERLANG_LIB_DIR_public_key}/include/OTP-PUB-KEY.hrl],[HAS_OTP_PUB_KEY_HRL="true"],[HAS_OTP_PUB_KEY_HRL="false"])

@@ -4,8 +4,9 @@
  {erts, "@ERLANG_ERTS_VER@"},
  [{kernel,"@ERLANG_LIB_VER_kernel@"},
   {stdlib,"@ERLANG_LIB_VER_stdlib@"},
-  {ssl, "@ERLANG_LIB_VER_ssl@"},
+  {sasl, "@ERLANG_LIB_VER_sasl@"},
   {crypto, "@ERLANG_LIB_VER_crypto@"},
-  {public_key, "@ERLANG_LIB_VER_public_key@"}
+  {public_key, "@ERLANG_LIB_VER_public_key@"},
+  {ssl, "@ERLANG_LIB_VER_ssl@"}
  ]
 }.
