@@ -8,6 +8,7 @@
 %%% @end
 %%%-------------------------------------------------------------------
 -module(sipserver).
+-behaviour(application).
 %%-compile(export_all).
 
 %%--------------------------------------------------------------------
@@ -15,6 +16,7 @@
 %%--------------------------------------------------------------------
 -export([
 	 start/2,
+	 stop/1,
 	 stop/0,
 	 restart/0,
 	 process/2,
@@ -98,6 +100,16 @@ start(normal, [AppModule]) ->
 	    E = lists:flatten(io_lib:format("Failed starting supervisor : ~p", [Unknown])),
 	    {error, E}
     end.
+
+%%--------------------------------------------------------------------
+%% @spec    (State) -> State
+%%          State = []
+%% @doc     Application behaviour callback called when the application
+%%          is shutdown.
+%% @end
+%%--------------------------------------------------------------------
+stop([]) ->
+	[].
 
 %%--------------------------------------------------------------------
 %% @spec    () -> term() "does not return"
