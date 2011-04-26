@@ -58,7 +58,7 @@ config_defaults() ->
 %%--------------------------------------------------------------------
 init() ->
     Registrar = {registrar, {registrar, start_link, []}, permanent, 2000, worker, [registrar]},
-    Tables = [user, numbers, phone, cpl_script_graph, regexproute, gruu],
+    Tables = [user, numbers, phone, regexproute, gruu],
     #yxa_app_init{sup_spec	= {append, [Registrar]},
 		  mnesia_tables	= Tables
 		 }.
