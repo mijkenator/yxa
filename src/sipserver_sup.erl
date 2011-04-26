@@ -1,7 +1,7 @@
 %%%-------------------------------------------------------------------
 %%% File    : sipserver_sup.erl
 %%% @author   Fredrik Thulin <ft@it.su.se>
-%%% @doc      YXA application main supervisor.
+%%% @docfile "../doc/html/src/sipserver_sup.edoc"
 %%%
 %%% @since    21 Mar 2004 by Fredrik Thulin <ft@it.su.se>
 %%% @end

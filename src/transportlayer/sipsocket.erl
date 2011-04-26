@@ -1,8 +1,7 @@
 %%%-------------------------------------------------------------------
 %%% File    : sipsocket.erl
 %%% @author   Fredrik Thulin <ft@it.su.se>
-%%% @doc      Transport layer processes supervisor, and sipsocket
-%%%           interface functions.
+%%% @docfile  "../../doc/html/src/transportlayer/sipsocket.edoc"
 %%%
 %%% @since    21 Mar 2004 by Fredrik Thulin <ft@it.su.se>
 %%% @end

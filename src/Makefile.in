@@ -256,6 +256,8 @@ xreftest: $(beam_FILES)
 doc: $(ebin_dir)/yxa_edoc.beam doc-recursive
 	mkdir -p $(doc_dir)/html/src
 	cp $(srcdir)/overview.edoc $(doc_dir)/html/src/
+	cp $(top_srcdir)/doc-src/sipserver_sup.edoc $(doc_dir)/html/src/
+	cp $(top_srcdir)/doc-src/supervision.png $(doc_dir)/html/src/
 	$(ERL) $(YXA_EDOC_ARGS) -pa $(ebin_dir) -noshell \
 		-yxa_edoc_dir $(doc_dir)/html/src \
 		-yxa_edoc_srcpath $(srcdir) \

@@ -1,0 +1,22 @@
+@doc      Transport layer processes supervisor, and sipsocket interface functions.
+
+This {@link //stdlib/supervisor. supervisor} behaviour callback module
+implements a supervisor within the {@link //yxa. yxa} application.
+
+The supervision heirachy is depicted in
+<a href="../supervision.png">Figure 1-1</a>.
+
+<img alt="supervision heirachy" src="../supervision.png" /><br />
+<a href="../supervision.png">Figure 1-1</a>
+
+The main application {@link //yxa/sipserver_sup. sipserver_sup}
+{@link //stdlib/supervisor. supervisor} starts a child
+{@link //stdlib/supervisor. supervisor} with the registered name
+<em>tranportlayer</em> implemented in this module.  It starts permanent
+workers registered as {@link //yxa/sipsocket_udp. sipsocket_udp},
+{@link //yxa/tcp_dispatcher. tcp_dispatcher} and
+{@link //yxa/sipsocket_blacklist. sipsocket_blacklist} implemented in
+modules of the same names.  It also starts an unnamed worker for each
+TCP port it listens on implemented in the
+{@link //yxa/tcp_listener. tcp_listener} module.
+

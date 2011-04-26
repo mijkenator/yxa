@@ -1,0 +1,25 @@
+@doc YXA application main supervisor.
+
+This {@link //stdlib/supervisor. supervisor} behaviour callback module
+implements a supervisor within the {@link //yxa. yxa} application.
+
+The supervision heirachy is depicted in
+<a href="supervision.png">Figure 1-1</a>.
+
+<img alt="supervision heirachy" src="supervision.png" /><br />
+<a href="supervision.png">Figure 1-1</a>
+
+The {@link //yxa/sipserver_sup. sipserver_sup}
+{@link //stdlib/supervisor. supervisor} starts permanent workers with the
+registered names {@link //yxa/yxa_config. yxa_config},
+{@link //yxa/logger. logger}, {@link //yxa/yxa_monitor. yxa_monitor},
+{@link //yxa/event_mgr. event_mgr}, {@link //yxa/dialog_server. dialog_server}
+and {@link //yxa/transactionlayer. transactionlayer} implemented in modules
+of the same names along with one registered as <em>ldap_client</em>
+implemented in the {@link //yxa/directory. directory} module.  The
+{@link //yxa/sipserver_sup. sipserver_sup}
+{@link //stdlib/supervisor. supervisor} also starts a child
+{@link //stdlib/supervisor. supervisor} with the registered name
+<em>tranportlayer</em> which is implemented in the
+{@link //yxa/sipsocket. sipsocket} module. 
+

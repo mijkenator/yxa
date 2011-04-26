@@ -94,6 +94,7 @@ clean:
 doc:
 	mkdir -p $(doc_dir)/html/src/transportlayer
 	cp $(srcdir)/overview.edoc $(doc_dir)/html/src/transportlayer/
+	cp $(top_srcdir)/doc-src/sipsocket.edoc $(doc_dir)/html/src/transportlayer/
 	$(ERL) $(YXA_EDOC_ARGS) -pa $(ebin_dir) -noshell \
 		-yxa_edoc_dir $(doc_dir)/html/src/transportlayer \
 		-yxa_edoc_srcpath $(srcdir) \
