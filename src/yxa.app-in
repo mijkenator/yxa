@@ -84,6 +84,8 @@
 	     tcp_receiver,
 	     transportlayer,
 	     url_param,
+	     event_handler,
+	     event_handler_csyslog,
 	     util,
 	     xref_test,
 	     yxa_app,

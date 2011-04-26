@@ -14,9 +14,7 @@
     presence_package,
     presence_pidf,
     presence_xmerl_xml,
-    subscription,
-    event_handler,
-    event_handler_csyslog
+    subscription
     ]},
   {registered, []},
   {included_applications, [yxa]},
