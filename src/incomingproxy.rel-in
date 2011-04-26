@@ -9,7 +9,7 @@
   {ssl, "@ERLANG_LIB_VER_ssl@"},
   {asn1, "@ERLANG_LIB_VER_asn1@"},
   {mnesia, "@ERLANG_LIB_VER_mnesia@"},
-  {yxa, "%VERSION%", load},
+  {yxa, "%VERSION%"},
   {incomingproxy, "%VERSION%", permanent}
  ]
 }.

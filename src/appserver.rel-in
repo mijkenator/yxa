@@ -9,6 +9,6 @@
   {ssl, "@ERLANG_LIB_VER_ssl@"},
   {mnesia, "@ERLANG_LIB_VER_mnesia@"},
   {yxa, "%VERSION%"},
-  {appserver, "%VERSION%"}
+  {appserver, "%VERSION%", permanent}
  ]
 }.
