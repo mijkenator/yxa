@@ -244,6 +244,12 @@ config.hrl: $(srcdir)/config.hrl-in
 	sed -e 's,[@]HAS_OTP_PUB_KEY_HRL[@],$(HAS_OTP_PUB_KEY_HRL),g' \
 	  < $< > $@
 
+check: $(beam_FILES)
+	dialyzer $(ebin_dir)
+#	dialyzer -I$(srcdir) -I$(yxa_include_dir) -I$(srcdir)/eldap \
+#		-I$(srcdir)/cpl -I$(srcdir)/sipuserdb -I$(srcdir)/transactionlayer \
+#		-DLOCAL_MODULE=$(local_module) -r --src $(srcdir)
+
 test: $(ebin_dir)/autotest.beam
 	$(ERL) -noshell -s autotest run shell -pz $(ebin_dir)
 
