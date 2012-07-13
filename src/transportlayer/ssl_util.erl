@@ -17,6 +17,7 @@
 	 is_acceptable_ssl_socket/5,
 
 	 decode_ssl_rdnseq/1,
+         pkix_decode_cert/2,
 
 	 test/0
 	]).
@@ -29,10 +30,12 @@
 -include_lib("public_key/include/OTP-PUB-KEY.hrl").
 -define(PKIX_MODULE, 'OTP-PUB-KEY').
 -define(ATTRIBUTE_TYPE_AND_VALUE, 'OTPAttributeTypeAndValue').
+pkix_decode_cert(Crt, Type) -> public_key:pkix_decode_cert(Crt, Type).
 -else.
 -include_lib("ssl/include/OTP-PKIX.hrl").
 -define(PKIX_MODULE, 'OTP-PKIX').
 -define(ATTRIBUTE_TYPE_AND_VALUE, 'SSLAttributeTypeAndValue').
+pkix_decode_cert(Crt, Type) -> {ok, TestCert1} = public_key:pkix_decode_cert(Crt, Type), TestCert1.
 -endif.
 -include("sipsocket.hrl").
 
@@ -516,8 +519,8 @@ test() ->
 	 18,241,73,68,30,183,225,22,14,172,193,251,254,99,104,222,249,240,41,28,33,81,4,155,105,29,165,75,214,231,150,
 	 100,157,176,135,199,38,70,213,107,101,39,244,183,149,103,223,131,137>>,
 
-    {ok, TestCert1} = public_key:pkix_decode_cert(TestCert1_der, plain),
 
+    TestCert1 = pkix_decode_cert(TestCert1_der, plain),
 
     %% test decode_ssl_rdnseq(RdnSequence)
     %%--------------------------------------------------------------------

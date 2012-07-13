@@ -6,7 +6,7 @@ Quick installation guide :
 	./bootstrap
 	$ mkdir build
 	$ cd build
-	$ ../yxa-version/configure && make && make test && make install
+	$ ../configure && make && make test && make install
 
 and then start configuring your new SIP server(s). These steps are
 described in more detail below, so keep on reading.
